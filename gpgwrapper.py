@@ -28,9 +28,7 @@ def encrypt_message(recipient, user, data, options):
         "--armor"
     ]
     if options and "s" in options and user:
-        popen_list.append("--sign")
-        popen_list.append("--local-user")
-        popen_list.append(user)
+        popen_list.extend(["--sign", "--local-user", user])
     stdout, stderr = subprocess.Popen(
         popen_list,
         stdin=subprocess.PIPE, stdout=subprocess.PIPE, stderr=subprocess.PIPE,
